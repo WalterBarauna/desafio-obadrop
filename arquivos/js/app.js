@@ -15,12 +15,24 @@ function loadPosts() {
       postsList.innerHTML = '';
       data.forEach(post => {
         const li = document.createElement('li');
-        li.innerHTML = `
-          <h3>${post.title}</h3>
-          <p>${post.body}</p>
-          <button onclick="editPost(${post.id}, '${post.title}', '${post.body}')">Editar</button>
-          <button onclick="deletePost(${post.id})">Excluir</button>
-        `;
+
+        const h3 = document.createElement('h3');
+        h3.textContent = post.title;
+
+        const p = document.createElement('p');
+        p.textContent = post.body;
+
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Editar';
+        editBtn.addEventListener('click', () =>
+          editPost(post.id, post.title, post.body)
+        );
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Excluir';
+        deleteBtn.addEventListener('click', () => deletePost(post.id));
+
+        li.append(h3, p, editBtn, deleteBtn);
         postsList.appendChild(li);
       });
     });
