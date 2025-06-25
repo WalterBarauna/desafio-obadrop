@@ -51,8 +51,7 @@ function loadPosts() {
         li.append(h3, p, editBtn, deleteBtn);
         postsList.appendChild(li);
       })
-      .catch(() => erro('Não foi possível carregar os posts.'));
-    });
+    }).catch(() => erro('Não foi possível carregar os posts.'));
 }
 
 loadPosts();
